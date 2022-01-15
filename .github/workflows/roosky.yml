@@ -18,7 +18,7 @@ env:
   SYMFONY_DEPRECATIONS_HELPER: weak
   SIMPLETEST_DB: sqlite://localhost/private/.ht.sqlite
   SIMPLETEST_BASE_URL: http://127.0.0.1:8080
-  BROWSERTEST_OUTPUT_DIRECTORY: $GITHUB_WORKSPACE/private/browsertest_output
+  BROWSERTEST_OUTPUT_DIRECTORY: ../private/browsertest_output
   MINK_DRIVER_ARGS_WEBDRIVER: '["chrome", {"browserName":"chrome","chromeOptions":{"args":["--disable-gpu","--headless", "--no-sandbox"]}}, "http://127.0.0.1:9515"]'
 
   # Nightwatch
