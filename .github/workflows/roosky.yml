@@ -80,8 +80,13 @@ jobs:
       - name: phpunit
         run: |
           cd web
-          php $GITHUB_WORKSPACE/vendor/bin/phpunit -c core/phpunit.xml.dist core/modules/action --debug
+          php $GITHUB_WORKSPACE/vendor/bin/phpunit core/modules/action --debug
       - name: nightwatch
         run: |
           cd web/core
           yarn test:nightwatch --tag core
+      - uses: actions/upload-artifact@v2
+        if: ${{ failure() || success() }}
+        with:
+          name: phpunit_browser_output
+          path: 'private/browsertest_output'
