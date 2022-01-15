@@ -7,7 +7,7 @@ use Drupal\Core\Site\Settings;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
-final class Kernel extends DrupalKernel {
+class Kernel extends DrupalKernel {
 
   public function discoverServiceProviders() {
     parent::discoverServiceProviders();
