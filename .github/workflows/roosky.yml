@@ -84,4 +84,5 @@ jobs:
         if: ${{ failure() || success() }}
         with:
           name: phpunit_browser_output
-          path: 'private/browsertest_output'
+          # For some reason Drupal always prints here regardless BROWSERTEST_OUTPUT_DIRECTORY.
+          path: './web/sites/simpletest/browser_output'
