@@ -78,9 +78,7 @@ jobs:
       - run: "chromedriver &"
 
       - name: phpunit
-        run: |
-          cd web
-          php $GITHUB_WORKSPACE/vendor/bin/phpunit core/modules/action --debug
+        run: php vendor/bin/phpunit web/core/modules/action --debug
       - name: nightwatch
         run: |
           cd web/core
