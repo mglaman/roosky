@@ -1,2 +1,6 @@
 parameters:
+  # @todo something weird is happening. Changing APP_ENV between `dev` to `prod`
+  #  or `test` causes the container to recompile and toggle this value, but
+  #  FinishResponseSubscriber still adds the headers if this file isn't being
+  #  included for the service files.
   http.response.debug_cacheability_headers: true

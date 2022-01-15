@@ -7,23 +7,27 @@ use Drupal\Core\Site\Settings;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
-final class Kernel extends DrupalKernel {
+class Kernel extends DrupalKernel {
 
   public function discoverServiceProviders() {
     parent::discoverServiceProviders();
     $this->serviceProviderClasses['site'][] = Provider::class;
-    // @todo needs to be based on app root, not this file.
-    //    would ../ be fine enough since it gets chdir to docroot folder (web)?
-    $this->serviceYamls['site'][] = __DIR__ . '/../config/services/default.yml';
+    // @todo base on app root, without trusting current working dir.
+    $this->serviceYamls['site'][] = '../config/services/default.yml';
     if ($this->environment === 'dev') {
-      $this->serviceYamls['site'][] = __DIR__ . '/../config/services/dev.yml';
+      $this->serviceYamls['site'][] = '../config/services/dev.yml';
     }
   }
 
   protected function initializeSettings(Request $request) {
+    // If Drupal is running tests, don't hijack the settings changes.
+    if (drupal_valid_test_ua()) {
+      parent::initializeSettings($request);
+      return;
+    }
+
     $site_path = static::findSitePath($request);
     $this->setSitePath($site_path);
-
     // Overridden so we can hijack settings.php location.
     Settings::initialize(dirname(__DIR__), 'config', $this->classLoader);
 

@@ -25,10 +25,13 @@
         "psr-4": {
             "App\\": "app",
             "Roosky\\": "src"
-        }
+        },
+        "files": ["bootstrap.php"]
     },
     "require-dev": {
-        "drupal/devel": "^4.1"
+        "drupal/core-dev": "^9.3",
+        "drupal/devel": "^4.1",
+        "phpspec/prophecy-phpunit": "^2"
     },
     "conflict": {
         "drupal/drupal": "*"

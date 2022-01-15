@@ -249,7 +249,7 @@ $databases = [];
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = 'mVBLWMKSGu6hd5JJb3_pmsDW3NBoSbw-D-gQNeGWo82PDBiwxCF4d4g5Nzq_PFGQxDRXakvRPQ';
+$settings['hash_salt'] = '';
 
 /**
  * Deployment identifier.
@@ -769,10 +769,31 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 # if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
-$databases['default']['default'] = array (
-  'database' => 'sites/default/files/.sqlite',
-  'prefix' => '',
-  'namespace' => 'Drupal\\Core\\Database\\Driver\\sqlite',
-  'driver' => 'sqlite',
-);
-$settings['config_sync_directory'] = 'sites/default/files/config_GNeV-rRbSAilS6YCnUn5D9bnTzb16eEmJnfI0ZLNSgBhENlBZwnCGzzp5dFjjezumCgEb8ibLw/sync';
+
+// @todo: this file is still required with these settings due to InstallKernel
+// and the UpdateKernel.
+$settings['hash_salt'] = $_ENV['DRUPAL_HASH_SALT'] ?: '';
+
+/**
+ * Database connection information.
+ */
+if ($_ENV['DB_CONNECTION'] !== 'sqlite') {
+  $databases['default']['default'] = [
+    'driver' => $_ENV['DB_CONNECTION'],
+    'database' => $_ENV['DRUPAL_DATABASE_NAME'],
+    'username' => $_ENV['DRUPAL_DATABASE_USERNAME'],
+    'password' => $_ENV['DRUPAL_DATABASE_PASSWORD'],
+    'host' => $_ENV['DRUPAL_DATABASE_HOST'],
+    'port' => $_ENV['DRUPAL_DATABASE_PORT'],
+  ];
+}
+else {
+  $databases['default']['default'] = array (
+    'database' => '../private/db.sqlite',
+    'prefix' => '',
+    'namespace' => 'Drupal\\Core\\Database\\Driver\\sqlite',
+    'driver' => 'sqlite',
+  );
+}
+
+
