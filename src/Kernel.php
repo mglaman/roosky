@@ -20,9 +20,14 @@ class Kernel extends DrupalKernel {
   }
 
   protected function initializeSettings(Request $request) {
+    // If Drupal is running tests, don't hijack the settings changes.
+    if (drupal_valid_test_ua()) {
+      parent::initializeSettings($request);
+      return;
+    }
+
     $site_path = static::findSitePath($request);
     $this->setSitePath($site_path);
-
     // Overridden so we can hijack settings.php location.
     Settings::initialize(dirname(__DIR__), 'config', $this->classLoader);
 
