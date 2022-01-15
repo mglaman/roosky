@@ -69,9 +69,10 @@ jobs:
       - name: Setup problem matchers for PHPUnit
         run: echo "::add-matcher::${{runner.tool_cache}}/phpunit.json"
 
-      - run: "composer update  -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist"
-      - run: "yarn install --non-interactive --cwd $GITHUB_WORKSPACE/web/core"
-      - run: "mkdir -p private/browsertest_output"
+      - run: composer update  -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      - run: php roosky env:generate --sqlite
+      - run: yarn install --non-interactive --cwd $GITHUB_WORKSPACE/web/core
+      - run: mkdir -p private/browsertest_output
       - run: "cd web && php -S 127.0.0.1:8080 .ht.router.php &"
       # Chromedriver already exists
       - run: "chromedriver &"
