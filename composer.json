@@ -25,7 +25,8 @@
         "psr-4": {
             "App\\": "app",
             "Roosky\\": "src"
-        }
+        },
+        "files": ["bootstrap.php"]
     },
     "require-dev": {
         "drupal/core-dev": "^9.3",

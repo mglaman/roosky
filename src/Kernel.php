@@ -12,11 +12,10 @@ class Kernel extends DrupalKernel {
   public function discoverServiceProviders() {
     parent::discoverServiceProviders();
     $this->serviceProviderClasses['site'][] = Provider::class;
-    // @todo needs to be based on app root, not this file.
-    //    would ../ be fine enough since it gets chdir to docroot folder (web)?
-    $this->serviceYamls['site'][] = __DIR__ . '/../config/services/default.yml';
+    // @todo base on app root, without trusting current working dir.
+    $this->serviceYamls['site'][] = '../config/services/default.yml';
     if ($this->environment === 'dev') {
-      $this->serviceYamls['site'][] = __DIR__ . '/../config/services/dev.yml';
+      $this->serviceYamls['site'][] = '../config/services/dev.yml';
     }
   }
 
