@@ -20,6 +20,7 @@
         "drupal/core-composer-scaffold": "^9.3",
         "drupal/core-project-message": "^9.3",
         "drupal/core-recommended": "^9.3",
+        "drush/drush": "^11.0",
         "vlucas/phpdotenv": "^5.4"
     },
     "autoload": {
@@ -62,8 +63,7 @@
             },
             "file-mapping": {
                 "[web-root]/index.php": false,
-                "[project-root]/.editorconfig": false,
-                "[project-root]/config/default.settings.php": "web/core/assets/scaffold/files/default.settings.php"
+                "[project-root]/.editorconfig": false
             }
         },
         "installer-paths": {

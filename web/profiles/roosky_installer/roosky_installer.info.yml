@@ -1,0 +1,10 @@
+name: Roosky installer
+type: profile
+core_version_requirement: ^9
+config_install: true
+config_install_path: '../config'
+
+distribution:
+  name: Roosky
+  install:
+    theme: claro
