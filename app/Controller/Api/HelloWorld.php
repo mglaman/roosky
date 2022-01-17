@@ -2,13 +2,15 @@
 
 namespace App\Controller\Api;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 final class HelloWorld {
 
   public function __invoke()
   {
-    return [
+    return new JsonResponse([
       'message' => 'hello world!',
-    ];
+    ]);
   }
 
 }

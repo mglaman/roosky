@@ -32,6 +32,9 @@ final class ApiRoutes implements EventSubscriberInterface {
    * {@inheritdoc}
    */
   public static function getSubscribedEvents() {
+    // @todo Roosky could provide a compiler pass to run these in its own
+    // event subscriber to provide routes, so everything doesn't have to have
+    // this boilerplate.
     $events[RoutingEvents::DYNAMIC][] = 'routes';
     return $events;
   }
