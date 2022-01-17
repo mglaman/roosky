@@ -40,4 +40,17 @@ class Kernel extends DrupalKernel {
     }
   }
 
+  protected function getModulesParameter() {
+    $extensions = parent::getModulesParameter();
+    // This triggers UnknownExtensionException in ExtensionList.
+    /*
+    $extensions['roosky'] = [
+      'type' => 'module',
+      'pathname' => '../app/app.info.yml',
+      'filename' => '../app/hooks.php',
+    ];
+    */
+    return $extensions;
+  }
+
 }

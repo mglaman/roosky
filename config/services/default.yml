@@ -4,4 +4,4 @@ services:
   app.routes.api:
     class: App\Routing\ApiRoutes
     tags:
-      - { name: event_subscriber }
+      - { name: roosky.route_provider }
