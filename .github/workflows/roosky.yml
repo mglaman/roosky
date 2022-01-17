@@ -69,7 +69,7 @@ jobs:
       - name: nightwatch
         run: |
           cd web/core
-          yarn test:nightwatch --tag core
+          yarn test:nightwatch --tag roosky
         env:
           DRUPAL_TEST_BASE_URL: http://127.0.0.1:8080
           DRUPAL_TEST_DB_URL: sqlite://localhost/sites/default/files/.ht.sqlite
@@ -79,6 +79,7 @@ jobs:
           DRUPAL_TEST_WEBDRIVER_CHROME_ARGS: "--disable-gpu --headless --no-sandbox"
           DRUPAL_NIGHTWATCH_OUTPUT: reports/nightwatch
           DRUPAL_NIGHTWATCH_IGNORE_DIRECTORIES: node_modules,vendor,.*,sites/*/files,sites/*/private,sites/simpletest
+          DRUPAL_NIGHTWATCH_SEARCH_DIRECTORY: ../
 
       - uses: actions/upload-artifact@v2
         if: ${{ failure() || success() }}

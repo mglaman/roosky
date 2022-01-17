@@ -1,3 +1,7 @@
 parameters:
   http.response.debug_cacheability_headers: false
-services: { }
+services:
+  app.routes.api:
+    class: App\Routing\ApiRoutes
+    tags:
+      - { name: event_subscriber }
