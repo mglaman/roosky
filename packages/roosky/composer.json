@@ -1,0 +1,10 @@
+{
+    "name": "mglaman/roosky",
+    "type": "library",
+        "autoload": {
+        "psr-4": {
+            "Roosky\\": "src"
+        },
+        "files": ["bootstrap.php"]
+    }
+}

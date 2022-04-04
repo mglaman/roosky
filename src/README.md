@@ -1,4 +1,3 @@
-# Roosky
+# App
 
-This is the Roosky namespace. This would eventually be spun into its own
-package like `roosky/framework` from the `roosky/roosky` project template.
+This is where your custom code goes that integrates with Roosky and Drupal!

@@ -1,5 +1,5 @@
 {
-    "name": "roosky/roosky",
+    "name": "roosky/drupal",
     "description": "A wildly different approach to building an application with Drupal",
     "type": "project",
     "license": "GPL-2.0-or-later",
@@ -12,6 +12,10 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "path",
+            "url": "./packages/roosky"
         }
     ],
     "require": {
@@ -21,12 +25,12 @@
         "drupal/core-project-message": "^9.3",
         "drupal/core-recommended": "^9.3",
         "drush/drush": "^11.0",
+        "mglaman/roosky": "@dev",
         "vlucas/phpdotenv": "^5.4"
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app",
-            "Roosky\\": "src"
+            "App\\": "src"
         },
         "files": ["bootstrap.php"]
     },
@@ -45,7 +49,8 @@
         "allow-plugins": {
             "composer/installers": true,
             "drupal/core-composer-scaffold": true,
-            "drupal/core-project-message": true
+            "drupal/core-project-message": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
         }
     },
     "scripts": {
@@ -53,7 +58,7 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php mojo env:generate --ansi"
+            "@php vendor/bin/drush env:generate --sqlite"
         ]
     },
     "extra": {
